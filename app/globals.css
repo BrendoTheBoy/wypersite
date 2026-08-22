@@ -38,3 +38,40 @@
     @apply font-accent text-xs uppercase tracking-[0.18em] text-ink sm:text-sm;
   }
 }
+
+.quote-in-forward {
+  animation: quote-in-forward 280ms ease;
+}
+
+.quote-in-back {
+  animation: quote-in-back 280ms ease;
+}
+
+@keyframes quote-in-forward {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes quote-in-back {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quote-in-forward,
+  .quote-in-back {
+    animation: none;
+  }
+}
