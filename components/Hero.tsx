@@ -25,15 +25,15 @@ export default function Hero() {
             Residential and commercial window cleaning and eavestrough cleaning
             across Guelph and Wellington County.
           </p>
-        </div>
 
-        <div className="relative z-10 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
-          <CTAButton href="/contact" variant="primary">
-            Get a Free Quote
-          </CTAButton>
-          <CTAButton href={SITE.phoneHref} variant="secondary">
-            Call {SITE.phone}
-          </CTAButton>
+          <div className="mt-2 flex w-full max-w-md flex-col gap-3 sm:mt-3 sm:max-w-none sm:flex-row sm:justify-center">
+            <CTAButton href="/contact" variant="primary">
+              Get a Free Quote
+            </CTAButton>
+            <CTAButton href={SITE.phoneHref} variant="secondary">
+              Call {SITE.phone}
+            </CTAButton>
+          </div>
         </div>
       </div>
 
