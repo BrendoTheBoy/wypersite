@@ -18,13 +18,13 @@ export default function Header() {
             className="justify-self-start focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
             onClick={() => setOpen(false)}
           >
-            <span className="flex h-14 max-w-[160px] items-center overflow-hidden lg:h-16 lg:max-w-[220px]">
+            <span className="flex h-14 max-w-[260px] items-center overflow-hidden lg:h-16 lg:max-w-[340px]">
               <Image
                 src={SITE.logoDark}
                 alt="Wyper Window Cleaning"
-                width={220}
-                height={132}
-                className="h-full w-auto max-h-full max-w-[160px] object-contain lg:max-w-[220px]"
+                width={1770}
+                height={836}
+                className="h-full w-auto max-h-full max-w-[260px] object-contain lg:max-w-[340px]"
                 priority
               />
             </span>

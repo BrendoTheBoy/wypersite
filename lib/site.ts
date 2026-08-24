@@ -8,7 +8,7 @@ export const SITE = {
   url: "https://wyperwindowcleaning.ca",
   domain: "wyperwindowcleaning.ca",
   logo: "/logos/mainlogo.png",
-  logoDark: "/logos/mainlogodarky.png",
+  logoDark: "/logos/mainlogoheader.png",
   region: "Ontario",
   country: "CA",
   priceRange: "$$",

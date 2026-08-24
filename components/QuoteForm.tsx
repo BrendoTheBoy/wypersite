@@ -66,9 +66,7 @@ export default function QuoteForm() {
   const [stepIndex, setStepIndex] = useState(0);
   const [direction, setDirection] = useState<"forward" | "back">("forward");
   const [advancing, setAdvancing] = useState(false);
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
-    "idle",
-  );
+  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [submitError, setSubmitError] = useState("");
   const [attemptedSubmit, setAttemptedSubmit] = useState(false);
   const advanceTimer = useRef<number | null>(null);
@@ -119,61 +117,85 @@ export default function QuoteForm() {
   }
 
   const fieldErrors = validateContact(answers);
-  const hasFieldErrors = Boolean(
-    fieldErrors.name || fieldErrors.phone || fieldErrors.email,
-  );
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setAttemptedSubmit(true);
     setSubmitError("");
 
-    if (hasFieldErrors) return;
+    const nextFieldErrors = validateContact(answers);
+    if (nextFieldErrors.name || nextFieldErrors.phone || nextFieldErrors.email) {
+      console.error("Quote form client validation failed:", nextFieldErrors);
+      return;
+    }
 
+    const requestBody = {
+      service: answers.service,
+      property: answers.property,
+      storeys: answers.storeys,
+      location: answers.location,
+      name: answers.name,
+      phone: answers.phone,
+      email: answers.email,
+      message: answers.message,
+      botcheck: answers.botcheck,
+    };
+
+    const endpoint = "/api/quote";
+    console.log("Submitting quote request to", endpoint, requestBody);
     setStatus("submitting");
 
     try {
-      const response = await fetch("/api/quote", {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          service: answers.service,
-          property: answers.property,
-          storeys: answers.storeys,
-          location: answers.location,
-          name: answers.name,
-          phone: answers.phone,
-          email: answers.email,
-          message: answers.message,
-          botcheck: answers.botcheck,
-        }),
+        body: JSON.stringify(requestBody),
       });
 
-      const payload: unknown = await response.json().catch(() => null);
-      const ok =
+      const payload: unknown = await response.json().catch((parseError) => {
+        console.error("Quote response JSON parse failed:", parseError);
+        return null;
+      });
+
+      console.log("Quote API response:", {
+        url: response.url,
+        status: response.status,
+        ok: response.ok,
+        payload,
+      });
+
+      const success =
         response.ok &&
         typeof payload === "object" &&
         payload !== null &&
         "ok" in payload &&
         payload.ok === true;
 
-      if (!ok) {
+      if (!success) {
         const message =
           typeof payload === "object" &&
           payload !== null &&
           "error" in payload &&
-          typeof payload.error === "string"
+          typeof payload.error === "string" &&
+          payload.error
             ? payload.error
-            : "Could not send your request right now.";
+            : `Request failed with status ${response.status}.`;
+        console.error("Quote request failed:", message, payload);
         setSubmitError(message);
-        setStatus("error");
+        setStatus("idle");
         return;
       }
 
+      console.log("Quote request succeeded:", payload);
       setStatus("success");
-    } catch {
-      setSubmitError("Could not send your request right now.");
-      setStatus("error");
+    } catch (error) {
+      console.error("Quote request threw:", error);
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Could not send your request right now.";
+      setSubmitError(message);
+      setStatus("idle");
     }
   }
 
@@ -363,17 +385,28 @@ export default function QuoteForm() {
               className="mt-2 w-full resize-y rounded-xl border-2 border-ink bg-white px-4 py-3 font-body text-base text-ink focus:outline-none focus:ring-2 focus:ring-primary"
             />
 
-            {status === "error" && (
-              <p className="mt-4 font-body text-sm leading-relaxed text-ink sm:text-base" role="alert">
-                {submitError} Call or text{" "}
-                <a
-                  href={SITE.phoneHref}
-                  className="font-medium underline decoration-2 underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-                >
-                  {SITE.phone}
-                </a>{" "}
-                and Brendan will take your details.
-              </p>
+            {submitError && (
+              <div
+                className="mt-5 rounded-2xl border-[3px] border-ink bg-primary/40 p-4 text-ink"
+                role="alert"
+              >
+                <p className="font-accent text-xs uppercase tracking-[0.14em]">
+                  Could not send
+                </p>
+                <p className="mt-2 font-body text-sm leading-relaxed sm:text-base">
+                  {submitError}
+                </p>
+                <p className="mt-2 font-body text-sm leading-relaxed sm:text-base">
+                  Call or text{" "}
+                  <a
+                    href={SITE.phoneHref}
+                    className="font-medium underline decoration-2 underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                  >
+                    {SITE.phone}
+                  </a>{" "}
+                  and Brendan will take your details.
+                </p>
+              </div>
             )}
 
             <button

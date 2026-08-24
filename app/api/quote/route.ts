@@ -6,20 +6,46 @@ import {
   type QuoteAnswers,
 } from "@/lib/quote";
 
-// Swap for quotes@wyperwindows.ca once the domain is verified in Resend
-const FROM_EMAIL = "onboarding@resend.dev";
-const TO_EMAIL = "info@wyperwindows.ca";
+// --- Email configuration ---
+const FROM_EMAIL =
+  "Wyper Window Cleaning <quotes@send.wyperwindowcleaning.ca>";
+const TO_EMAIL = "mcgrathwindow@gmail.com";
+// replyTo is set per-request to the customer's submitted email below
+
+const EXPECTED_BODY_KEYS = [
+  "service",
+  "property",
+  "storeys",
+  "location",
+  "name",
+  "phone",
+  "email",
+  "message",
+  "botcheck",
+] as const;
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
 
   try {
     body = await readBody(request);
-  } catch {
+  } catch (error) {
+    console.error("Quote request body could not be read:", error);
     return NextResponse.json(
       { ok: false, error: "Could not read the quote request." },
       { status: 400 },
     );
+  }
+
+  const bodyKeys = Object.keys(body);
+  const missingKeys = EXPECTED_BODY_KEYS.filter((key) => !(key in body));
+  if (missingKeys.length > 0) {
+    console.error("Quote body shape mismatch. Expected keys:", EXPECTED_BODY_KEYS);
+    console.error("Received keys:", bodyKeys);
+    console.error("Missing keys:", missingKeys);
+    console.error("Received body:", body);
+  } else {
+    console.log("Quote request received at /api/quote with body:", body);
   }
 
   if (isHoneypotTripped(body)) {
@@ -28,6 +54,7 @@ export async function POST(request: Request) {
 
   const parsed = parseQuoteBody(body);
   if (!parsed.ok) {
+    console.error("Quote validation failed:", parsed.error, body);
     return NextResponse.json(
       { ok: false, error: parsed.error },
       { status: 400 },
@@ -38,7 +65,7 @@ export async function POST(request: Request) {
   if (!apiKey) {
     console.error("RESEND_API_KEY is not set");
     return NextResponse.json(
-      { ok: false, error: "Could not send your request right now." },
+      { ok: false, error: "RESEND_API_KEY is not set on the server." },
       { status: 500 },
     );
   }
@@ -47,7 +74,7 @@ export async function POST(request: Request) {
   const { data } = parsed;
 
   try {
-    const { error } = await resend.emails.send({
+    const result = await resend.emails.send({
       from: FROM_EMAIL,
       to: TO_EMAIL,
       replyTo: data.email,
@@ -56,21 +83,26 @@ export async function POST(request: Request) {
       text: buildEmailText(data),
     });
 
-    if (error) {
-      console.error("Resend error:", error.message);
-      return NextResponse.json(
-        { ok: false, error: "Could not send your request right now." },
-        { status: 500 },
-      );
+    if (result.error) {
+      console.error("Resend error object:", result.error);
+      const message =
+        typeof result.error.message === "string" && result.error.message
+          ? result.error.message
+          : JSON.stringify(result.error);
+      return NextResponse.json({ ok: false, error: message }, { status: 500 });
     }
 
+    console.log("Resend success:", result.data);
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("Quote email failed:", error);
-    return NextResponse.json(
-      { ok: false, error: "Could not send your request right now." },
-      { status: 500 },
-    );
+    console.error("Resend threw an exception:", error);
+    const message =
+      error instanceof Error
+        ? error.message
+        : typeof error === "string"
+          ? error
+          : JSON.stringify(error);
+    return NextResponse.json({ ok: false, error: message }, { status: 500 });
   }
 }
 
