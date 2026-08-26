@@ -10,12 +10,12 @@ import { SITE } from "@/lib/site";
 const services = [
   {
     title: "Residential Window Cleaning",
-    href: "/services",
+    href: "/services/residential-window-cleaning",
     image: "/photos/residential.jpg",
     placeholderLabel: "residential.jpg",
     alt: "Residential window cleaning on a home in Guelph",
     description:
-      "Crystal-clear interior and exterior windows for homes across Guelph and Wellington County. Brendan shows up on time, treats your place with care, and leaves every pane streak-free.",
+      "Crystal-clear exterior windows for homes across Guelph and Wellington County. Interior glass and screens available as add-ons. We show up on time, treat your place with care, and leave every pane streak-free.",
   },
   {
     title: "Commercial & Storefront",
@@ -44,11 +44,11 @@ const reasons = [
   },
   {
     title: "Owner-Operated",
-    body: "You deal with Brendan, not a call centre. One local operator who knows the work and stands behind it.",
+    body: "You deal with the owner directly, not a call centre. One local operator who knows the work and stands behind it.",
   },
   {
     title: "Streak-Free Guarantee",
-    body: "If a window is not streak-free, Brendan comes back and makes it right. Clean glass is the whole point.",
+    body: "If a window is not streak-free, we come back and make it right. Clean glass is the whole point.",
   },
   {
     title: "Local to Guelph",
@@ -60,7 +60,7 @@ const steps = [
   {
     number: "01",
     title: "Get a free quote",
-    body: "Reach out with your address and what you need cleaned. Brendan replies quickly with a clear, no-obligation quote.",
+    body: "Reach out with your address and what you need cleaned. We reply quickly with a clear, no-obligation quote.",
   },
   {
     number: "02",
@@ -78,7 +78,7 @@ const steps = [
 const testimonials = [
   {
     quote:
-      "Brendan left every window spotless. Friendly, on time, and easy to book. Our Guelph home has never looked brighter.",
+      "Wyper left every window spotless. Friendly, on time, and easy to book. Our Guelph home has never looked brighter.",
     name: "Sarah",
     neighbourhood: "Kortright Hills",
   },
@@ -90,7 +90,7 @@ const testimonials = [
   },
   {
     quote:
-      "Booked eavestrough and window cleaning together. Brendan was thorough, careful with the property, and the results speak for themselves.",
+      "Booked eavestrough and window cleaning together. Thorough, careful with the property, and the results speak for themselves.",
     name: "Laura",
     neighbourhood: "St. George's Park",
   },
@@ -190,30 +190,30 @@ export default function HomePage() {
       </Section>
 
       <Section tone="cyan">
-        <p className="eyebrow">Meet Brendan</p>
+        <p className="eyebrow">Meet the owner</p>
         <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight text-ink sm:text-5xl">
           The person behind the squeegee
         </h2>
         <div className="mt-10 grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <div className="rounded-3xl border-[3px] border-ink bg-white p-4 shadow-hard sm:p-6">
             <Photo
-              src="/photos/brendan.jpg"
-              alt="Brendan McGrath, owner of Wyper Window Cleaning in Guelph"
+              src="/photos/owner.jpg"
+              alt="Owner of Wyper Window Cleaning in Guelph"
               width={800}
               height={600}
-              placeholderLabel="brendan.jpg"
+              placeholderLabel="owner.jpg"
               className="aspect-[4/3] w-full rounded-2xl object-cover"
             />
           </div>
           <div className="space-y-4 font-body text-base leading-relaxed text-ink sm:text-lg">
             <p>
-              Brendan McGrath is the owner of Wyper Window Cleaning and a Guelph
-              local. He is fully insured, and he handles every job himself from
-              the first quote to the final wipe.
+              Wyper Window Cleaning is owner-operated and based in Guelph. We are
+              fully insured, and we handle every job ourselves from the first
+              quote to the final wipe.
             </p>
             <p>
               No call centres, no rotating crews. When you book Wyper, you get
-              Brendan on site with the tools, the care, and the streak-free
+              the owner on site with the tools, the care, and the streak-free
               finish your windows deserve.
             </p>
           </div>
@@ -288,7 +288,7 @@ export default function HomePage() {
               Get streak-free windows without the hassle
             </h2>
             <p className="mt-4 font-body text-base text-white/80 sm:text-lg">
-              Call {SITE.phone} or request a free quote online. Brendan serves
+              Call {SITE.phone} or request a free quote online. We serve
               Guelph, Fergus, Elora, Rockwood, Cambridge, and surrounding
               Wellington County.
             </p>

@@ -1,6 +1,6 @@
 # Wyper Window Cleaning
 
-Local service website for Wyper Window Cleaning — Guelph, Ontario.
+Local service website for Wyper Window Cleaning in Guelph, Ontario.
 
 ## Getting Started
 

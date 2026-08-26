@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Get a Free Quote",
   description:
-    "Request a free window cleaning and eavestrough quote in Guelph and Wellington County. Takes about 30 seconds. Brendan replies the same day.",
+    "Request a free window cleaning and eavestrough quote in Guelph and Wellington County. Takes about 30 seconds. We reply the same day.",
   alternates: {
     canonical: "/contact",
   },
@@ -61,7 +61,7 @@ export default function ContactPage() {
             Get a Free Quote
           </h1>
           <p className="mt-3 max-w-2xl font-body text-base text-ink sm:text-lg">
-            Takes about 30 seconds. Brendan replies the same day.
+            Takes about 30 seconds. We reply the same day.
           </p>
         </div>
       </section>
@@ -114,7 +114,7 @@ export default function ContactPage() {
               </p>
 
               <p className="mt-6 font-body text-base leading-relaxed text-ink">
-                Texting is the fastest way to reach him.
+                Texting is the fastest way to reach us.
               </p>
               <p className="mt-3 font-body text-base leading-relaxed text-ink">
                 Wyper is fully insured.

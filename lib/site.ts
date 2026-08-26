@@ -1,6 +1,5 @@
 export const SITE = {
   name: "Wyper Window Cleaning",
-  owner: "Brendan McGrath",
   phone: "519-820-8827",
   phoneHref: "tel:5198208827",
   email: "info@wyperwindowcleaning.ca",

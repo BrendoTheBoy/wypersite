@@ -51,7 +51,7 @@ const ALL_STEPS: { id: StepId; question: string }[] = [
   { id: "property", question: "What kind of property?" },
   { id: "storeys", question: "How many storeys?" },
   { id: "location", question: "Where are you located?" },
-  { id: "contact", question: "Almost done. How can Brendan reach you?" },
+  { id: "contact", question: "Almost done. How can we reach you?" },
 ];
 
 function stepsFor(property: string) {
@@ -218,7 +218,7 @@ export default function QuoteForm() {
           Request sent
         </h2>
         <p className="mt-4 max-w-md font-body text-base leading-relaxed text-ink sm:text-lg">
-          Thanks. Brendan will be in touch shortly, usually within a couple of
+          Thanks. We will be in touch shortly, usually within a couple of
           hours.
         </p>
       </div>
@@ -404,7 +404,7 @@ export default function QuoteForm() {
                   >
                     {SITE.phone}
                   </a>{" "}
-                  and Brendan will take your details.
+                  and we will take your details.
                 </p>
               </div>
             )}

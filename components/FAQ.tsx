@@ -2,7 +2,7 @@ const faqs = [
   {
     question: "How much does window cleaning cost in Guelph?",
     answer:
-      "Every home and storefront is different, so pricing depends on the number of windows, access, and whether you need interior, exterior, or both. Reach out with a few details and Brendan will send a free, no-obligation quote tailored to your property.",
+      "Every home and storefront is different, so pricing depends on the number of windows, access, and whether you need interior, exterior, or both. Reach out with a few details and we will send a free, no-obligation quote tailored to your property.",
   },
   {
     question: "How often should windows be cleaned?",
@@ -12,7 +12,7 @@ const faqs = [
   {
     question: "Do you clean inside and outside?",
     answer:
-      "Yes. Wyper cleans interior and exterior glass for residential and commercial jobs. Let Brendan know which sides you need when you request a quote so the visit is planned correctly.",
+      "Yes. Wyper cleans interior and exterior glass for residential and commercial jobs. For homes, a standard quote covers the exterior, and interior glass can be added on request. Let us know which sides you need when you request a quote so the visit is planned correctly.",
   },
   {
     question: "Are you insured?",
@@ -22,7 +22,7 @@ const faqs = [
   {
     question: "Do you clean eavestroughs?",
     answer:
-      "Yes. Eavestrough cleaning is one of the core services alongside window cleaning. Brendan clears debris so water flows properly and your home stays protected through wet weather.",
+      "Yes. Eavestrough cleaning is one of the core services alongside window cleaning. We clear debris so water flows properly and your home stays protected through wet weather.",
   },
   {
     question: "What areas do you serve?",

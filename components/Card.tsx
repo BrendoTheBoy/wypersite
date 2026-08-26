@@ -8,6 +8,8 @@ type CardProps = {
   href?: string;
   linkLabel?: string;
   className?: string;
+  /** White is default. Cyan fills add-on style cards. */
+  tone?: "white" | "cyan";
   image?: {
     src: string;
     alt: string;
@@ -22,12 +24,14 @@ export default function Card({
   href,
   linkLabel = "Learn more",
   className = "",
+  tone = "white",
   image,
 }: CardProps) {
   return (
     <article
       className={[
-        "flex h-full flex-col rounded-3xl border-[3px] border-ink bg-white p-6 shadow-hard sm:p-8",
+        "flex h-full flex-col rounded-3xl border-[3px] border-ink p-6 shadow-hard sm:p-8",
+        tone === "cyan" ? "bg-primary" : "bg-white",
         "transition-transform duration-200 hover:-translate-y-1 hover:shadow-hard-lg",
         className,
       ]
