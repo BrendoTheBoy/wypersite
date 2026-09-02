@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Card from "@/components/Card";
 import CTAButton from "@/components/CTAButton";
 import Photo from "@/components/Photo";
 import Section from "@/components/Section";
 import Sparkles from "@/components/Sparkles";
+import StarRating from "@/components/StarRating";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Residential Window Cleaning in Guelph",
   description:
-    "Streak-free exterior window cleaning for homes in Guelph, Fergus, Elora, and Rockwood. Interior glass and screens available as add-ons. Owner-operated residential window cleaning from Wyper.",
+    "Streak-free exterior window cleaning for homes in Guelph, Fergus, Elora, and Rockwood. Glass, frames, sills, and tracks as standard. Interior glass and screens available as add-ons.",
   alternates: {
     canonical: "/services/residential-window-cleaning",
   },
@@ -33,6 +35,10 @@ const standardIncluded = [
   {
     title: "Exterior sills wiped",
     body: "Outside sills wiped so dirt and grit are not left sitting on the ledge.",
+  },
+  {
+    title: "Exterior tracks cleared",
+    body: "Debris and grit cleared from the outside tracks so windows slide properly.",
   },
   {
     title: "Hard water and mineral spots",
@@ -59,12 +65,12 @@ const steps = [
   {
     number: "01",
     title: "Get a free quote",
-    body: "Call or send the form with a few details about your home. We reply with a clear, no-obligation quote for residential window cleaning.",
+    body: "Call or send the form with a few details about your home. We reply with a clear, no-obligation quote.",
   },
   {
     number: "02",
     title: "Schedule a visit",
-    body: "Pick a day and time that works for your household. Flexible booking for homes across Guelph and Wellington County.",
+    body: "Pick a day and time that works for your household. Flexible booking across Guelph and Wellington County.",
   },
   {
     number: "03",
@@ -94,6 +100,28 @@ const reasons = [
   {
     title: "Respectful of your home",
     body: "Shoes off inside, careful around furniture and floors, and no mess left behind when the job is done.",
+  },
+] as const;
+
+// PLACEHOLDER: Replace with real Google reviews when available.
+const testimonials = [
+  {
+    quote:
+      "Every exterior pane came out spotless, and they cleared the tracks so the sliders actually move again. Easy to book and careful around the garden beds.",
+    name: "Sarah",
+    neighbourhood: "Kortright Hills",
+  },
+  {
+    quote:
+      "Two-storey house with awkward side windows. They handled the height without fuss and the glass looks brand new. We will book them every spring.",
+    name: "James",
+    neighbourhood: "Exhibition Park",
+  },
+  {
+    quote:
+      "Had the exterior done plus screens as an add-on. Honest quote, showed up on time, and walked us through everything before leaving.",
+    name: "Laura",
+    neighbourhood: "St. George's Park",
   },
 ] as const;
 
@@ -127,6 +155,11 @@ const faqs = [
     question: "What happens if it rains?",
     answer:
       "Light rain after a clean is usually fine once the glass has dried. If weather looks bad on the day of your visit, we will reach out to reschedule so the job is not rushed or half done in a storm.",
+  },
+  {
+    question: "Do you repair or replace windows?",
+    answer:
+      "No. We clean glass, frames, sills, and tracks. We do not repair windows or replace broken panes. If something looks damaged during a visit, we will point it out so you can call a glazier or contractor.",
   },
 ] as const;
 
@@ -173,6 +206,36 @@ const serviceJsonLd = {
   },
 };
 
+const linkClass =
+  "font-medium underline decoration-2 underline-offset-4 transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
+
+function CheckIcon() {
+  return (
+    <svg
+      className="mt-0.5 h-5 w-5 shrink-0"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle
+        cx="12"
+        cy="12"
+        r="9"
+        fill="#5CE1E6"
+        stroke="#003057"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M8.5 12.2 11 14.7 15.5 9.5"
+        stroke="#003057"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function ResidentialWindowCleaningPage() {
   return (
     <>
@@ -198,7 +261,7 @@ export default function ResidentialWindowCleaningPage() {
               Guelph and Wellington County. Interior glass and screens are
               available as add-ons when you want them included.
             </p>
-            <div className="mt-6 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row">
+            <div className="mt-8 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row">
               <CTAButton href="/contact" variant="primary">
                 Get a Free Quote
               </CTAButton>
@@ -230,38 +293,58 @@ export default function ResidentialWindowCleaningPage() {
           Exterior as standard. Add-ons when you need them.
         </h2>
         <p className="mt-4 max-w-2xl font-body text-base text-ink/80 sm:text-lg">
-          Window cleaning Guelph homeowners book with Wyper starts with a thorough
-          exterior clean. Interior work and screens are quoted separately so you
-          only pay for what you ask for.
+          Every quote starts with a thorough exterior clean covering the glass,
+          frames, sills, and tracks. Interior glass and screens are priced
+          separately, so you only pay for what you actually want done.
         </p>
 
-        <div className="mt-12">
+        <div className="mt-14">
           <p className="eyebrow">Standard exterior clean</p>
           <p className="mt-3 max-w-2xl font-body text-base text-ink/80 sm:text-lg">
             This is what a standard quote covers.
           </p>
-          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {standardIncluded.map((item) => (
-              <Card key={item.title} title={item.title}>
-                <p>{item.body}</p>
-              </Card>
-            ))}
+          <div className="mt-8 rounded-3xl border-[3px] border-ink bg-white p-6 shadow-hard sm:p-8">
+            <ul className="divide-y divide-ink/15">
+              {standardIncluded.map((item) => (
+                <li
+                  key={item.title}
+                  className="flex gap-4 py-5 first:pt-0 last:pb-0"
+                >
+                  <CheckIcon />
+                  <div className="min-w-0">
+                    <h3 className="font-display text-xl leading-tight text-ink sm:text-2xl">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 font-body text-base leading-relaxed text-ink/80">
+                      {item.body}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="mt-14">
+        <div className="mt-20 border-t-[3px] border-ink pt-16">
           <p className="eyebrow">Popular add-ons</p>
           <p className="mt-3 max-w-2xl font-body text-base text-ink/80 sm:text-lg">
             Interior work and screens take considerably more time, so they are
             quoted as add-ons and can be included on request.
           </p>
-          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {addOns.map((item) => (
               <Card key={item.title} title={item.title} tone="cyan">
                 <p>{item.body}</p>
               </Card>
             ))}
           </div>
+          <p className="mt-8 max-w-2xl font-body text-base text-ink/80 sm:text-lg">
+            Mention any add-ons when you{" "}
+            <Link href="/contact" className={linkClass}>
+              request a quote
+            </Link>{" "}
+            so we can price them in from the start.
+          </p>
         </div>
       </Section>
 
@@ -270,13 +353,13 @@ export default function ResidentialWindowCleaningPage() {
         <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight text-ink sm:text-5xl">
           A simple residential visit from quote to walkthrough
         </h2>
-        <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <ol className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {steps.map((step) => (
             <li key={step.number} className="relative">
               <p className="font-accent text-5xl tracking-wider text-ink sm:text-6xl">
                 {step.number}
               </p>
-              <h3 className="mt-3 font-display text-2xl text-ink sm:text-3xl">
+              <h3 className="mt-4 font-display text-2xl text-ink sm:text-3xl">
                 {step.title}
               </h3>
               <p className="mt-3 font-body text-base leading-relaxed text-ink/80">
@@ -290,35 +373,125 @@ export default function ResidentialWindowCleaningPage() {
       <Section tone="white">
         <p className="eyebrow">On the job</p>
         <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight text-ink sm:text-5xl">
-          Careful work on real homes
+          What actually happens on a residential visit
         </h2>
-        <div className="mt-10 grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+        <div className="mt-12 grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <div className="rounded-3xl border-[3px] border-ink bg-white p-4 shadow-hard sm:p-6">
             <Photo
               src="/photos/residential.jpg"
-              alt="Streak free residential window cleaning in Guelph Ontario"
+              alt="Clean residential windows on a home in Guelph"
               width={1200}
               height={800}
               placeholderLabel="residential.jpg"
               className="aspect-[3/2] w-full rounded-2xl object-cover"
             />
           </div>
-          <div className="space-y-4 font-body text-base leading-relaxed text-ink sm:text-lg">
+          <div className="space-y-5 font-body text-base leading-relaxed text-ink sm:text-lg">
             <p>
-              Residential window cleaning is detail work. We take the time to wipe
-              sills, clear tracks when included, and check panes in the light so
-              hard water marks and fingerprints do not get left behind.
+              When we arrive, we walk the property first. That means checking
+              access, noting which panes need extra attention, and confirming
+              anything you asked for in the quote. We bring our own water and
+              gear, so you do not need to clear a hose or find an outdoor outlet.
             </p>
             <p>
-              Whether you are in Guelph, Fergus, Elora, or Rockwood, the goal is
-              the same: clear glass that looks like someone actually cared about
-              your home.
+              The exterior clean covers the glass, frames, sills, and tracks. We
+              wipe as we go and check panes in the light so hard water marks and
+              fingerprints do not get left behind. If you asked for interior
+              glass or screens, those get done as a separate pass so nothing is
+              rushed. Before we leave, we walk the job with you and handle any
+              second looks on the spot.
             </p>
           </div>
+        </div>
+
+        <div className="mt-16 max-w-3xl space-y-5 font-body text-base leading-relaxed text-ink sm:text-lg">
+          <h3 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+            Two-storey homes and hard to reach glass
+          </h3>
+          <p>
+            Plenty of Guelph homes are two storeys with tall living room windows,
+            over-garage panes, or side elevations that are awkward to reach from
+            the ground. We plan for that when we quote. Extension poles and the
+            right setup keep us off your landscaping where we can, and we flag
+            anything unsafe or blocked before the visit starts rather than
+            surprising you on the day.
+          </p>
+        </div>
+
+        <div className="mt-16 max-w-3xl space-y-5 font-body text-base leading-relaxed text-ink sm:text-lg">
+          <h3 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+            Screens, storm windows, and weather
+          </h3>
+          <p>
+            Screens sit in front of the glass and hold a surprising amount of
+            dust and pollen. When you add screen cleaning, we remove them, clean
+            them, and put them back so they do not dull the view you just paid
+            for. Storm windows and seasonal inserts work the same way: tell us
+            what is in place when you book so the quote matches the house we will
+            actually see.
+          </p>
+          <p>
+            Weather matters. We do not force a full exterior clean through a
+            downpour or high wind. If the forecast turns bad, we reach out and
+            reschedule. Light rain after the glass has dried is usually fine.
+            Winter salt and spring pollen are two of the biggest reasons local
+            homeowners book regularly, so timing a clean after the worst of
+            either season often makes the biggest difference.
+          </p>
+          <p>
+            Running a shop or office as well as a house? We also handle{" "}
+            <Link
+              href="/services/commercial-window-cleaning"
+              className={linkClass}
+            >
+              commercial and storefront window cleaning
+            </Link>{" "}
+            on a separate schedule, so both sides of your glass stay covered.
+          </p>
+        </div>
+
+        <div className="mt-16 max-w-3xl rounded-3xl border-[3px] border-ink bg-white p-6 shadow-hard sm:p-8">
+          <p className="eyebrow">What we do not do</p>
+          <h3 className="mt-3 font-display text-2xl leading-tight text-ink sm:text-3xl">
+            Cleaning only, not repairs
+          </h3>
+          <p className="mt-4 font-body text-base leading-relaxed text-ink/80 sm:text-lg">
+            We clean windows. We do not repair frames, replace seals, or install
+            new glass. If a pane is cracked, a latch is broken, or something looks
+            off during the visit, we will point it out so you can call the right
+            trade. That keeps the quote honest and saves everyone a wasted trip.
+          </p>
         </div>
       </Section>
 
       <Section tone="cyan">
+        <p className="eyebrow">Where we work</p>
+        <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight text-ink sm:text-5xl">
+          Homes across Guelph and nearby towns
+        </h2>
+        <div className="mt-8 max-w-3xl space-y-5 font-body text-base leading-relaxed text-ink sm:text-lg">
+          <p>
+            Most of our residential work is right here in Guelph. That includes
+            established neighbourhoods like Kortright Hills, Exhibition Park, and
+            St. George&apos;s Park, newer streets in the south end, and older
+            homes closer to downtown where the glass takes more of a beating from
+            road salt and foot traffic. If you are nearby and unsure whether we
+            cover your street, just ask when you get in touch.
+          </p>
+          <p>
+            Outside the city we regularly clean homes in Fergus, Elora, Rockwood,
+            and Cambridge, plus the surrounding Wellington County area between
+            them. A full breakdown of towns and how booking works is on our{" "}
+            <Link href="/service-area" className={linkClass}>
+              service area page
+            </Link>
+            . Wherever you are on that map, the process is the same: a clear
+            quote, a booked visit, and a walkthrough before we leave.
+          </p>
+        </div>
+      </Section>
+
+      <Section tone="white">
         <p className="eyebrow">Why Wyper</p>
         <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight text-ink sm:text-5xl">
           Why homeowners choose Wyper
@@ -327,7 +500,7 @@ export default function ResidentialWindowCleaningPage() {
           Solo owner-operator work is the point. One person quotes the job, shows
           up, and stands behind the result.
         </p>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {reasons.map((reason) => (
             <Card key={reason.title} title={reason.title}>
               <p>{reason.body}</p>
@@ -336,16 +509,40 @@ export default function ResidentialWindowCleaningPage() {
         </div>
       </Section>
 
+      <Section tone="cyan">
+        <p className="eyebrow">Kind words</p>
+        <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight text-ink sm:text-5xl">
+          What homeowners are saying
+        </h2>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {testimonials.map((item) => (
+            <article
+              key={item.name}
+              className="flex h-full flex-col rounded-3xl border-[3px] border-ink bg-white p-6 shadow-hard sm:p-8"
+            >
+              <StarRating />
+              <blockquote className="mt-4 flex-1 font-body text-base leading-relaxed text-ink/80">
+                <p>&ldquo;{item.quote}&rdquo;</p>
+              </blockquote>
+              <p className="mt-5 font-accent text-sm uppercase tracking-[0.14em] text-ink">
+                {item.name}
+                <span className="text-ink/70"> · {item.neighbourhood}</span>
+              </p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
       <Section tone="white">
         <p className="eyebrow">FAQ</p>
         <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight text-ink sm:text-5xl">
-          Residential window cleaning questions
+          Common questions before you book
         </h2>
         <p className="mt-4 max-w-2xl font-body text-base text-ink/80 sm:text-lg">
-          Straight answers for homeowners booking window cleaning in Guelph and
-          nearby towns.
+          Straight answers about what is included, how long a visit takes, and
+          what happens if the weather turns.
         </p>
-        <div className="mt-10 space-y-4">
+        <div className="mt-12 space-y-4">
           {faqs.map((faq) => (
             <details
               key={faq.question}
@@ -377,11 +574,12 @@ export default function ResidentialWindowCleaningPage() {
               Ready when you are
             </p>
             <h2 className="mt-3 font-display text-4xl leading-tight text-white sm:text-5xl">
-              Book residential window cleaning with Wyper
+              Ready for clearer glass at home?
             </h2>
             <p className="mt-4 font-body text-base text-white/80 sm:text-lg">
-              Request a free quote for your home in Guelph, Fergus, Elora,
-              Rockwood, Cambridge, or surrounding Wellington County.
+              Tell us about your home and we will send a free quote. Serving
+              Guelph, Fergus, Elora, Rockwood, Cambridge, and surrounding
+              Wellington County.
             </p>
           </div>
           <CTAButton href="/contact" variant="cyan">
