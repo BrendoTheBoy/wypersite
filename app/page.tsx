@@ -19,21 +19,12 @@ const services = [
   },
   {
     title: "Commercial & Storefront",
-    href: "/services",
+    href: "/services/commercial-window-cleaning",
     image: "/photos/commercial.jpg",
     placeholderLabel: "commercial.jpg",
     alt: "Commercial storefront window cleaning in Guelph",
     description:
       "Keep your storefront looking sharp for customers walking by. Regular commercial cleans that fit around your hours so your glass always makes a strong first impression.",
-  },
-  {
-    title: "Eavestrough Cleaning",
-    href: "/services",
-    image: "/photos/eavestrough.jpg",
-    placeholderLabel: "eavestrough.jpg",
-    alt: "Eavestrough cleaning service on a Guelph home",
-    description:
-      "Clogged gutters lead to water damage and messy overflow. Wyper clears debris so water flows where it should, protecting your home and foundation through every season.",
   },
 ] as const;
 
@@ -70,7 +61,7 @@ const steps = [
   {
     number: "03",
     title: "Enjoy the view",
-    body: "Sit back while the glass gets done right. Streak-free windows and clear eavestroughs, guaranteed.",
+    body: "Sit back while the glass gets done right. Streak-free windows, guaranteed.",
   },
 ] as const;
 
@@ -90,7 +81,7 @@ const testimonials = [
   },
   {
     quote:
-      "Booked eavestrough and window cleaning together. Thorough, careful with the property, and the results speak for themselves.",
+      "Booked window cleaning for our whole house. Thorough, careful with the property, and the results speak for themselves.",
     name: "Laura",
     neighbourhood: "St. George's Park",
   },
@@ -113,9 +104,9 @@ export default function HomePage() {
         </h2>
         <p className="mt-4 max-w-2xl font-body text-base text-muted sm:text-lg">
           From neighbourhood homes to busy storefronts, Wyper keeps glass clean
-          and gutters clear across Guelph and beyond.
+          across Guelph and beyond.
         </p>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
           {services.map((service) => (
             <Card
               key={service.title}
@@ -137,11 +128,11 @@ export default function HomePage() {
       <Section tone="cyan">
         <p className="eyebrow">Why Wyper</p>
         <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight text-ink sm:text-5xl">
-          Bold on brand. Serious about clean glass.
+          Local, insured, and the best value for a proper clean
         </h2>
         <p className="mt-4 max-w-2xl font-body text-base text-ink/80 sm:text-lg">
-          Local, insured, and owner-operated. The way a neighbourhood service
-          should feel.
+          Clear quotes, careful work on your property, and streak-free glass you
+          can count on.
         </p>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {reasons.map((reason) => (

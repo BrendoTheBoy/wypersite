@@ -5,7 +5,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-ink text-white">
+    <footer className="bg-ink pb-24 text-white md:pb-0">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-3 lg:px-8">
         <div className="space-y-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}

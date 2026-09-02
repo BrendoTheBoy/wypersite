@@ -12,7 +12,7 @@ const faqs = [
   {
     question: "Do you clean inside and outside?",
     answer:
-      "Yes. Wyper cleans interior and exterior glass for residential and commercial jobs. For homes, a standard quote covers the exterior, and interior glass can be added on request. Let us know which sides you need when you request a quote so the visit is planned correctly.",
+      "A standard quote covers exterior windows. Interior glass is available as an add-on for homes and commercial jobs. Let us know which sides you need when you request a quote so the visit is planned correctly.",
   },
   {
     question: "Are you insured?",
@@ -20,9 +20,9 @@ const faqs = [
       "Yes. Wyper Window Cleaning is fully insured on every job. You can book with confidence knowing the work is covered from start to finish.",
   },
   {
-    question: "Do you clean eavestroughs?",
+    question: "How long does a typical job take?",
     answer:
-      "Yes. Eavestrough cleaning is one of the core services alongside window cleaning. We clear debris so water flows properly and your home stays protected through wet weather.",
+      "Most homes take a couple of hours, depending on the number of windows and how easy they are to access. Larger homes or jobs that include interior glass can take longer. We will give you a clearer time estimate with your quote.",
   },
   {
     question: "What areas do you serve?",

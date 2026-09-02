@@ -132,7 +132,7 @@ function escapeHtml(value: string): string {
 
 function buildRows(data: QuoteAnswers): { label: string; value: string }[] {
   const rows: { label: string; value: string }[] = [
-    { label: "Service", value: data.service },
+    { label: "Clean type", value: data.service },
     { label: "Property", value: data.property },
   ];
 

@@ -46,8 +46,13 @@ const INITIAL_ANSWERS: Answers = {
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const ADVANCE_DELAY_MS = 250;
 
-const ALL_STEPS: { id: StepId; question: string }[] = [
-  { id: "service", question: "What do you need cleaned?" },
+const ALL_STEPS: { id: StepId; question: string; helper?: string }[] = [
+  {
+    id: "service",
+    question: "What kind of clean do you need?",
+    helper:
+      "Exterior is the standard service. Interior glass can be added on.",
+  },
   { id: "property", question: "What kind of property?" },
   { id: "storeys", question: "How many storeys?" },
   { id: "location", question: "Where are you located?" },
@@ -267,6 +272,11 @@ export default function QuoteForm() {
         <h2 className="font-display text-3xl leading-tight text-ink sm:text-4xl">
           {step.question}
         </h2>
+        {step.helper && (
+          <p className="mt-2 font-body text-sm leading-relaxed text-muted sm:text-base">
+            {step.helper}
+          </p>
+        )}
 
         {step.id === "service" && (
           <OptionGrid columns={2}>

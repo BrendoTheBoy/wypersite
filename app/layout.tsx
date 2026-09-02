@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description:
-    "Professional residential and commercial window cleaning and eavestrough cleaning in Guelph, Fergus, Elora, Rockwood, Cambridge, and surrounding Wellington County.",
+    "Professional residential and commercial window cleaning in Guelph, Fergus, Elora, Rockwood, Cambridge, and surrounding Wellington County.",
   openGraph: {
     type: "website",
     locale: "en_CA",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: SITE.name,
     description:
-      "Professional residential and commercial window cleaning and eavestrough cleaning in Guelph and Wellington County.",
+      "Professional residential and commercial window cleaning in Guelph and Wellington County.",
   },
   alternates: {
     canonical: "/",
@@ -53,6 +53,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: SITE.name,
+  description:
+    "Professional residential and commercial window cleaning in Guelph and Wellington County.",
   telephone: SITE.phone,
   email: SITE.email,
   url: SITE.url,
@@ -85,7 +87,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Header />
-        <main className="pb-24 md:pb-0">{children}</main>
+        <main>{children}</main>
         <Footer />
         <MobileCTABar />
       </body>

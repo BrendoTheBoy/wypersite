@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import IconRow from "@/components/IconRow";
 import QuoteForm from "@/components/QuoteForm";
 import Section from "@/components/Section";
 import { SITE } from "@/lib/site";
@@ -6,14 +7,14 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Get a Free Quote",
   description:
-    "Request a free window cleaning and eavestrough quote in Guelph and Wellington County. Takes about 30 seconds. We reply the same day.",
+    "Request a free window cleaning quote in Guelph and Wellington County. Takes about 30 seconds. We reply the same day.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
     title: "Get a Free Quote",
     description:
-      "Free window cleaning and eavestrough quotes in Guelph, Fergus, Elora, Rockwood, and Wellington County.",
+      "Free window cleaning quotes in Guelph, Fergus, Elora, Rockwood, and Wellington County.",
     url: `${SITE.url}/contact`,
   },
 };
@@ -23,7 +24,7 @@ const contactJsonLd = {
   "@type": "ContactPage",
   name: "Get a Free Quote",
   description:
-    "Request a free window cleaning and eavestrough quote in Guelph and Wellington County.",
+    "Request a free window cleaning quote in Guelph and Wellington County.",
   url: `${SITE.url}/contact`,
   mainEntity: {
     "@type": "LocalBusiness",
@@ -46,6 +47,10 @@ const contactJsonLd = {
     },
   },
 };
+
+function Divider() {
+  return <div className="h-px bg-ink/15" aria-hidden="true" />;
+}
 
 export default function ContactPage() {
   return (
@@ -82,43 +87,62 @@ export default function ContactPage() {
           </div>
 
           <aside className="lg:col-span-2">
-            <div className="rounded-3xl border-[3px] border-ink bg-white p-6 shadow-hard sm:p-8">
-              <p className="eyebrow">Get in touch</p>
-              <a
-                href={SITE.phoneHref}
-                className="mt-4 block font-display text-4xl leading-tight text-ink transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink sm:text-5xl"
-              >
-                {SITE.phone}
-              </a>
-              <a
-                href={SITE.emailHref}
-                className="mt-3 inline-block font-body text-base text-ink underline decoration-2 underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-              >
-                {SITE.email}
-              </a>
+            <div className="space-y-6 rounded-3xl border-[3px] border-ink bg-white p-6 shadow-hard sm:p-8">
+              <div>
+                <p className="eyebrow">Get in touch</p>
+                <a
+                  href={SITE.phoneHref}
+                  className="mt-4 block font-display text-4xl leading-tight text-ink transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink sm:text-5xl"
+                >
+                  {SITE.phone}
+                </a>
+                <a
+                  href={SITE.emailHref}
+                  className="mt-3 inline-block font-body text-base text-ink underline decoration-2 underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                >
+                  {SITE.email}
+                </a>
+              </div>
 
-              <h2 className="mt-8 font-accent text-sm uppercase tracking-[0.16em] text-ink">
-                Service area
-              </h2>
-              <ul className="mt-3 space-y-1 font-body text-base text-ink">
-                {SITE.areasServed.map((area) => (
-                  <li key={area}>{area}</li>
-                ))}
+              <Divider />
+
+              <div>
+                <p className="eyebrow">Service area</p>
+                <ul className="mt-4 space-y-2">
+                  {SITE.areasServed.map((area) => (
+                    <li key={area}>
+                      <IconRow icon="pin">{area}</IconRow>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <Divider />
+
+              <div>
+                <p className="eyebrow">Hours</p>
+                <div className="mt-4">
+                  <IconRow
+                    icon="clock"
+                    detail="Call or text whenever, we pick up."
+                  >
+                    Available any time
+                  </IconRow>
+                </div>
+              </div>
+
+              <Divider />
+
+              <ul className="space-y-2">
+                <li>
+                  <IconRow icon="message">
+                    Texting is the fastest way to reach us
+                  </IconRow>
+                </li>
+                <li>
+                  <IconRow icon="shield">Fully insured on every job</IconRow>
+                </li>
               </ul>
-
-              <h2 className="mt-8 font-accent text-sm uppercase tracking-[0.16em] text-ink">
-                Hours
-              </h2>
-              <p className="mt-3 font-body text-base text-ink">
-                Monday to Saturday, 8am to 6pm
-              </p>
-
-              <p className="mt-6 font-body text-base leading-relaxed text-ink">
-                Texting is the fastest way to reach us.
-              </p>
-              <p className="mt-3 font-body text-base leading-relaxed text-ink">
-                Wyper is fully insured.
-              </p>
             </div>
           </aside>
         </div>

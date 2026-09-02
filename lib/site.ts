@@ -19,12 +19,23 @@ export const SITE = {
     "Rockwood",
     "Cambridge",
   ] as const,
-  openingHours: "Mo-Sa 08:00-18:00",
+  // Structured hours for LocalBusiness JSON-LD only. Visible copy says we answer any time.
+  openingHours: "Mo-Su 08:00-20:00",
   nav: [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
     { href: "/service-area", label: "Service Area" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
+  ] as const,
+  serviceLinks: [
+    {
+      href: "/services/residential-window-cleaning",
+      label: "Residential Window Cleaning",
+    },
+    {
+      href: "/services/commercial-window-cleaning",
+      label: "Commercial & Storefront",
+    },
   ] as const,
 } as const;

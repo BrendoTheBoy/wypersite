@@ -22,8 +22,8 @@ export default function Hero() {
           </h1>
 
           <p className="mt-2 max-w-lg font-body text-sm leading-relaxed text-ink/80 sm:mt-3 sm:text-base">
-            Residential and commercial window cleaning and eavestrough cleaning
-            across Guelph and Wellington County.
+            Residential and commercial window cleaning across Guelph and
+            Wellington County.
           </p>
 
           <div className="mt-2 flex w-full max-w-md flex-col gap-3 sm:mt-3 sm:max-w-none sm:flex-row sm:justify-center">

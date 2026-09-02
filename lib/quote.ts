@@ -1,7 +1,6 @@
 export const SERVICE_OPTIONS = [
-  "Windows",
-  "Eavestroughs",
-  "Both",
+  "Exterior only",
+  "Exterior and interior",
   "Not sure yet",
 ] as const;
 
@@ -65,7 +64,7 @@ export function parseQuoteBody(
   const message = readString(body, "message");
 
   if (!service || !isOneOf(service, SERVICE_OPTIONS)) {
-    return { ok: false, error: "Please choose what you need cleaned." };
+    return { ok: false, error: "Please choose what kind of clean you need." };
   }
   if (!property || !isOneOf(property, PROPERTY_OPTIONS)) {
     return { ok: false, error: "Please choose the kind of property." };
