@@ -4,7 +4,6 @@ import FAQ, { faqJsonLd } from "@/components/FAQ";
 import Hero from "@/components/Hero";
 import Photo from "@/components/Photo";
 import Section from "@/components/Section";
-import StarRating from "@/components/StarRating";
 import { SITE } from "@/lib/site";
 
 const services = [
@@ -31,7 +30,7 @@ const services = [
 const reasons = [
   {
     title: "Fully Insured",
-    body: "Work with peace of mind. Wyper carries full insurance on every job, residential or commercial.",
+    body: "Work with peace of mind. We carry full insurance on every job, residential or commercial.",
   },
   {
     title: "Owner-Operated",
@@ -65,28 +64,6 @@ const steps = [
   },
 ] as const;
 
-// PLACEHOLDER: Replace with real Google reviews when available.
-const testimonials = [
-  {
-    quote:
-      "Wyper left every window spotless. Friendly, on time, and easy to book. Our Guelph home has never looked brighter.",
-    name: "Sarah",
-    neighbourhood: "Kortright Hills",
-  },
-  {
-    quote:
-      "Our storefront glass was cloudy for months. One visit from Wyper and the whole front of the shop looks sharp again.",
-    name: "Mike",
-    neighbourhood: "Downtown Guelph",
-  },
-  {
-    quote:
-      "Booked window cleaning for our whole house. Thorough, careful with the property, and the results speak for themselves.",
-    name: "Laura",
-    neighbourhood: "St. George's Park",
-  },
-] as const;
-
 export default function HomePage() {
   return (
     <>
@@ -103,7 +80,7 @@ export default function HomePage() {
           Services that leave every window sparkling
         </h2>
         <p className="mt-4 max-w-2xl font-body text-base text-muted sm:text-lg">
-          From neighbourhood homes to busy storefronts, Wyper keeps glass clean
+          From neighbourhood homes to busy storefronts, we keep glass clean
           across Guelph and beyond.
         </p>
         <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -169,7 +146,7 @@ export default function HomePage() {
               <p className="eyebrow mb-3">After</p>
               <Photo
                 src="/photos/after.jpg"
-                alt="Streak-free windows after Wyper window cleaning in Guelph"
+                alt="Streak-free windows after professional window cleaning in Guelph"
                 width={800}
                 height={600}
                 placeholderLabel="after.jpg"
@@ -198,12 +175,12 @@ export default function HomePage() {
           </div>
           <div className="space-y-4 font-body text-base leading-relaxed text-ink sm:text-lg">
             <p>
-              Wyper Window Cleaning is owner-operated and based in Guelph. We are
-              fully insured, and we handle every job ourselves from the first
-              quote to the final wipe.
+              We are owner-operated and based in Guelph. We are fully insured,
+              and we handle every job ourselves from the first quote to the
+              final wipe.
             </p>
             <p>
-              No call centres, no rotating crews. When you book Wyper, you get
+              No call centres, no rotating crews. When you book with us, you get
               the owner on site with the tools, the care, and the streak-free
               finish your windows deserve.
             </p>
@@ -233,38 +210,13 @@ export default function HomePage() {
         </ol>
       </Section>
 
-      <Section tone="white" className="border-t-[3px] border-ink">
-        <p className="eyebrow">Kind words</p>
-        <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight text-ink sm:text-5xl">
-          What neighbours are saying
-        </h2>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {testimonials.map((item) => (
-            <article
-              key={item.name}
-              className="flex h-full flex-col rounded-3xl border-[3px] border-ink bg-white p-6 shadow-hard sm:p-8"
-            >
-              <StarRating />
-              <blockquote className="mt-4 flex-1 font-body text-base leading-relaxed text-muted">
-                <p>&ldquo;{item.quote}&rdquo;</p>
-              </blockquote>
-              <p className="mt-5 font-accent text-sm uppercase tracking-[0.14em] text-ink">
-                {item.name}
-                <span className="text-muted"> · {item.neighbourhood}</span>
-              </p>
-            </article>
-          ))}
-        </div>
-      </Section>
-
       <Section tone="cyan">
         <p className="eyebrow">FAQ</p>
         <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight text-ink sm:text-5xl">
           Questions Guelph homeowners ask
         </h2>
         <p className="mt-4 max-w-2xl font-body text-base text-ink/80 sm:text-lg">
-          Straight answers about window cleaning, insurance, and where Wyper
-          works.
+          Straight answers about window cleaning, insurance, and where we work.
         </p>
         <FAQ />
       </Section>

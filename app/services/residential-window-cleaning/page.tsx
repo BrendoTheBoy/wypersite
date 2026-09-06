@@ -5,7 +5,6 @@ import CTAButton from "@/components/CTAButton";
 import Photo from "@/components/Photo";
 import Section from "@/components/Section";
 import Sparkles from "@/components/Sparkles";
-import StarRating from "@/components/StarRating";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -91,7 +90,7 @@ const reasons = [
   },
   {
     title: "Fully insured",
-    body: "Wyper carries full insurance on every residential job so you can book with confidence.",
+    body: "We carry full insurance on every job so you can book with confidence.",
   },
   {
     title: "Streak-free guarantee",
@@ -100,28 +99,6 @@ const reasons = [
   {
     title: "Respectful of your home",
     body: "Shoes off inside, careful around furniture and floors, and no mess left behind when the job is done.",
-  },
-] as const;
-
-// PLACEHOLDER: Replace with real Google reviews when available.
-const testimonials = [
-  {
-    quote:
-      "Every exterior pane came out spotless, and they cleared the tracks so the sliders actually move again. Easy to book and careful around the garden beds.",
-    name: "Sarah",
-    neighbourhood: "Kortright Hills",
-  },
-  {
-    quote:
-      "Two-storey house with awkward side windows. They handled the height without fuss and the glass looks brand new. We will book them every spring.",
-    name: "James",
-    neighbourhood: "Exhibition Park",
-  },
-  {
-    quote:
-      "Had the exterior done plus screens as an add-on. Honest quote, showed up on time, and walked us through everything before leaving.",
-    name: "Laura",
-    neighbourhood: "St. George's Park",
   },
 ] as const;
 
@@ -236,6 +213,80 @@ function CheckIcon() {
   );
 }
 
+function HeroWindowMark() {
+  return (
+    <div
+      className="relative mx-auto hidden w-full max-w-sm lg:block"
+      aria-hidden="true"
+    >
+      <svg
+        viewBox="0 0 280 320"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-auto w-full"
+      >
+        <rect
+          x="36"
+          y="28"
+          width="208"
+          height="248"
+          rx="6"
+          stroke="#003057"
+          strokeWidth="3"
+          opacity="0.18"
+        />
+        <line
+          x1="140"
+          y1="28"
+          x2="140"
+          y2="276"
+          stroke="#003057"
+          strokeWidth="3"
+          opacity="0.18"
+        />
+        <line
+          x1="36"
+          y1="152"
+          x2="244"
+          y2="152"
+          stroke="#003057"
+          strokeWidth="3"
+          opacity="0.18"
+        />
+        <path
+          d="M28 276h224"
+          stroke="#003057"
+          strokeWidth="3"
+          strokeLinecap="round"
+          opacity="0.18"
+        />
+        <path
+          d="M48 292h184"
+          stroke="#003057"
+          strokeWidth="3"
+          strokeLinecap="round"
+          opacity="0.12"
+        />
+        <path
+          d="M140 8 L146 28 L166 34 L146 40 L140 60 L134 40 L114 34 L134 28 Z"
+          fill="#003057"
+          opacity="0.14"
+        />
+        <path
+          d="M236 108 L240 120 L252 124 L240 128 L236 140 L232 128 L220 124 L232 120 Z"
+          fill="#003057"
+          opacity="0.12"
+        />
+        <path
+          d="M52 188 L55 198 L65 201 L55 204 L52 214 L49 204 L39 201 L49 198 Z"
+          fill="#003057"
+          opacity="0.1"
+        />
+      </svg>
+    </div>
+  );
+}
+
 export default function ResidentialWindowCleaningPage() {
   return (
     <>
@@ -251,24 +302,27 @@ export default function ResidentialWindowCleaningPage() {
       <section className="relative overflow-hidden bg-primary">
         <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-12 lg:px-8 lg:pb-24 lg:pt-14">
           <Sparkles />
-          <div className="relative z-10 max-w-3xl">
-            <p className="eyebrow">Residential</p>
-            <h1 className="mt-3 font-display text-4xl leading-tight text-ink sm:text-5xl lg:text-6xl">
-              Residential Window Cleaning in Guelph
-            </h1>
-            <p className="mt-4 max-w-2xl font-body text-base leading-relaxed text-ink sm:text-lg">
-              Our standard service is a full exterior clean for homes across
-              Guelph and Wellington County. Interior glass and screens are
-              available as add-ons when you want them included.
-            </p>
-            <div className="mt-8 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row">
-              <CTAButton href="/contact" variant="primary">
-                Get a Free Quote
-              </CTAButton>
-              <CTAButton href={SITE.phoneHref} variant="secondary">
-                Call {SITE.phone}
-              </CTAButton>
+          <div className="relative z-10 grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+            <div className="max-w-2xl lg:max-w-none">
+              <p className="eyebrow">Residential</p>
+              <h1 className="mt-3 font-display text-4xl leading-tight text-ink sm:text-5xl lg:text-6xl">
+                Residential Window Cleaning in Guelph
+              </h1>
+              <p className="mt-4 font-body text-base leading-relaxed text-ink sm:text-lg">
+                Our standard service is a full exterior clean for homes across
+                Guelph and Wellington County. Interior glass and screens are
+                available as add-ons when you want them included.
+              </p>
+              <div className="mt-8 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row">
+                <CTAButton href="/contact" variant="primary">
+                  Get a Free Quote
+                </CTAButton>
+                <CTAButton href={SITE.phoneHref} variant="secondary">
+                  Call {SITE.phone}
+                </CTAButton>
+              </div>
             </div>
+            <HeroWindowMark />
           </div>
         </div>
         <div className="absolute inset-x-0 bottom-0 leading-[0]" aria-hidden="true">
@@ -510,26 +564,21 @@ export default function ResidentialWindowCleaningPage() {
       </Section>
 
       <Section tone="cyan">
-        <p className="eyebrow">Kind words</p>
-        <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight text-ink sm:text-5xl">
-          What homeowners are saying
-        </h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {testimonials.map((item) => (
-            <article
-              key={item.name}
-              className="flex h-full flex-col rounded-3xl border-[3px] border-ink bg-white p-6 shadow-hard sm:p-8"
-            >
-              <StarRating />
-              <blockquote className="mt-4 flex-1 font-body text-base leading-relaxed text-ink/80">
-                <p>&ldquo;{item.quote}&rdquo;</p>
-              </blockquote>
-              <p className="mt-5 font-accent text-sm uppercase tracking-[0.14em] text-ink">
-                {item.name}
-                <span className="text-ink/70"> · {item.neighbourhood}</span>
-              </p>
-            </article>
-          ))}
+        <div className="mx-auto max-w-3xl rounded-3xl border-[3px] border-ink bg-white p-6 shadow-hard sm:p-8">
+          <p className="eyebrow">Book with confidence</p>
+          <h2 className="mt-3 font-display text-3xl leading-tight text-ink sm:text-4xl">
+            Local, insured, and straightforward to quote
+          </h2>
+          <div className="mt-5 space-y-4 font-body text-base leading-relaxed text-ink/80 sm:text-lg">
+            <p>
+              We are a local operation based in Guelph. We are fully insured,
+              and every quote is free with no obligation.
+            </p>
+            <p>
+              If anything is missed, we come back at no charge and make it
+              right. Clean glass is the whole point.
+            </p>
+          </div>
         </div>
       </Section>
 

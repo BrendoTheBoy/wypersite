@@ -133,7 +133,7 @@ const faqs = [
   {
     question: "Are you insured?",
     answer:
-      "Yes. Wyper is fully insured on every commercial job. You can put storefront window cleaning on the calendar knowing the work is covered from start to finish.",
+      "Yes. We are fully insured on every commercial job. You can put storefront window cleaning on the calendar knowing the work is covered from start to finish.",
   },
   {
     question: "What areas do you serve?",

@@ -17,7 +17,7 @@ const faqs = [
   {
     question: "Are you insured?",
     answer:
-      "Yes. Wyper Window Cleaning is fully insured on every job. You can book with confidence knowing the work is covered from start to finish.",
+      "Yes. We are fully insured on every job. You can book with confidence knowing the work is covered from start to finish.",
   },
   {
     question: "How long does a typical job take?",
@@ -27,7 +27,7 @@ const faqs = [
   {
     question: "What areas do you serve?",
     answer:
-      "Wyper is based in Guelph and serves Fergus, Elora, Rockwood, Cambridge, and the surrounding Wellington County area. If you are nearby and unsure, just ask when you get in touch.",
+      "We are based in Guelph and serve Fergus, Elora, Rockwood, Cambridge, and the surrounding Wellington County area. If you are nearby and unsure, just ask when you get in touch.",
   },
 ] as const;
 
