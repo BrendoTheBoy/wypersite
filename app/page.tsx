@@ -134,22 +134,22 @@ export default function HomePage() {
             <figure>
               <p className="eyebrow mb-3">Before</p>
               <Photo
-                src="/photos/before.jpg"
+                src="/photos/beforewindow.jpeg"
                 alt="Dirty windows before professional window cleaning in Guelph"
                 width={800}
                 height={600}
-                placeholderLabel="before.jpg"
+                placeholderLabel="beforewindow.jpeg"
                 className="aspect-[4/3] w-full rounded-2xl object-cover"
               />
             </figure>
             <figure>
               <p className="eyebrow mb-3">After</p>
               <Photo
-                src="/photos/after.jpg"
+                src="/photos/afterwindow.jpeg"
                 alt="Streak-free windows after professional window cleaning in Guelph"
                 width={800}
                 height={600}
-                placeholderLabel="after.jpg"
+                placeholderLabel="afterwindow.jpeg"
                 className="aspect-[4/3] w-full rounded-2xl object-cover"
               />
             </figure>
@@ -165,11 +165,11 @@ export default function HomePage() {
         <div className="mt-10 grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <div className="rounded-3xl border-[3px] border-ink bg-white p-4 shadow-hard sm:p-6">
             <Photo
-              src="/photos/owner.jpg"
+              src="/photos/owner.jpeg"
               alt="Owner of Wyper Window Cleaning in Guelph"
               width={800}
               height={600}
-              placeholderLabel="owner.jpg"
+              placeholderLabel="owner.jpeg"
               className="aspect-[4/3] w-full rounded-2xl object-cover"
             />
           </div>

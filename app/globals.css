@@ -75,3 +75,14 @@
     animation: none;
   }
 }
+
+/* Leaflet custom pin: kill default divIcon box */
+.wyper-map-pin.leaflet-div-icon {
+  background: transparent;
+  border: none;
+}
+
+/* Soft light basemap only — never filter overlays or markers */
+.leaflet-tile-pane {
+  filter: grayscale(0.9) brightness(1.1) contrast(0.9);
+}

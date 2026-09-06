@@ -318,7 +318,7 @@ export default function QuoteForm() {
         )}
 
         {step.id === "location" && (
-          <OptionGrid columns={2}>
+          <OptionGrid columns={5}>
             {LOCATION_OPTIONS.map((option) => (
               <OptionCard
                 key={option}
@@ -456,16 +456,17 @@ function OptionGrid({
   columns,
 }: {
   children: React.ReactNode;
-  columns: 2 | 3;
+  columns: 2 | 3 | 5;
 }) {
+  const columnClass =
+    columns === 3
+      ? "sm:grid-cols-3"
+      : columns === 5
+        ? "sm:grid-cols-6 [&>*]:sm:col-span-2 [&>*:nth-child(4)]:sm:col-start-2 [&>*:nth-child(5)]:sm:col-start-4"
+        : "sm:grid-cols-2";
+
   return (
-    <div
-      className={`mt-6 grid gap-3 ${
-        columns === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"
-      }`}
-    >
-      {children}
-    </div>
+    <div className={`mt-6 grid gap-3 ${columnClass}`}>{children}</div>
   );
 }
 

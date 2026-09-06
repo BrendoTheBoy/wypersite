@@ -25,7 +25,6 @@ export const SITE = {
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
     { href: "/service-area", label: "Service Area" },
-    { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ] as const,
   serviceLinks: [

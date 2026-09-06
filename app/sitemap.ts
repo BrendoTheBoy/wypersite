@@ -8,7 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services/residential-window-cleaning",
     "/services/commercial-window-cleaning",
     "/service-area",
-    "/about",
     "/contact",
   ];
 

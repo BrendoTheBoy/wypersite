@@ -15,6 +15,7 @@ export const LOCATION_OPTIONS = [
   "Guelph",
   "Fergus or Elora",
   "Rockwood",
+  "Cambridge",
   "Somewhere else",
 ] as const;
 

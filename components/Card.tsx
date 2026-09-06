@@ -27,17 +27,20 @@ export default function Card({
   tone = "white",
   image,
 }: CardProps) {
-  return (
-    <article
-      className={[
-        "flex h-full flex-col rounded-3xl border-[3px] border-ink p-6 shadow-hard sm:p-8",
-        tone === "cyan" ? "bg-primary" : "bg-white",
-        "transition-transform duration-200 hover:-translate-y-1 hover:shadow-hard-lg",
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
+  const classes = [
+    "flex h-full flex-col rounded-3xl border-[3px] border-ink p-6 shadow-hard sm:p-8",
+    tone === "cyan" ? "bg-primary" : "bg-white",
+    "transition-transform duration-200 hover:-translate-y-1 hover:shadow-hard-lg",
+    href
+      ? "cursor-pointer text-inherit no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+      : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const content = (
+    <>
       {image && (
         <Photo
           src={image.src}
@@ -60,13 +63,20 @@ export default function Card({
         {children}
       </div>
       {href && (
-        <Link
-          href={href}
-          className="mt-5 inline-flex font-accent text-sm uppercase tracking-[0.14em] text-ink underline decoration-2 underline-offset-4 transition-colors hover:text-ink/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-        >
+        <span className="mt-5 inline-flex font-accent text-sm uppercase tracking-[0.14em] text-ink underline decoration-2 underline-offset-4">
           {linkLabel}
-        </Link>
+        </span>
       )}
-    </article>
+    </>
   );
+
+  if (href) {
+    return (
+      <Link href={href} className={classes}>
+        {content}
+      </Link>
+    );
+  }
+
+  return <article className={classes}>{content}</article>;
 }
